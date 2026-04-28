@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Emoji Pack</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <style>
+        .gradient-bg { background-image: linear-gradient(to right, #4F46E5, #8B5CF6); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <header class="gradient-bg text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold">🚀 Apex GitHub Emoji Pack ✨</h1>
+            <p class="mt-2 text-xl">Elevate your GitHub with 50 custom SVG emojis!</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <section class="text-center mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Enhance Your GitHub Presence</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                A curated pack of high-quality, niche-specific SVG emojis for aesthetic and expressive GitHub READMEs, commit messages, and issue tracking. 
+                Communicate clearer and make your projects stand out!
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <span class="text-5xl">💡</span>
+                <span class="text-5xl">🐛</span>
+                <span class="text-5xl">🛠️</span>
+                <span class="text-5xl">✅</span>
+                <span class="text-5xl">🚀</span>
+            </div>
+        </section>
+
+        <section class="bg-white shadow-lg rounded-lg p-8 text-center">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Get Your Pack Today!</h2>
+            <p class="text-5xl font-extrabold text-indigo-600 mb-4">$9.99</p>
+            <button id="buyButton" class="gradient-bg hover:opacity-90 text-white font-bold py-4 px-8 rounded-full text-xl transition duration-300">
+                Buy Now
+            </button>
+            <p class="text-sm text-gray-500 mt-4">Instant download after purchase.</p>
+        </section>
+
+        <section class="mt-12 text-center">
+            <h2 class="text-2xl font-semibold text-gray-800">What's Included?</h2>
+            <ul class="list-disc list-inside text-gray-700 mt-4 max-w-xl mx-auto space-y-2">
+                <li>50 Unique SVG Emojis (Developer Productivity, Bug Reporting, Feature Requests, etc.)</li>
+                <li>High-Quality Vector Graphics for Scalability</li>
+                <li>Easy to Integrate into GitHub</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Apex Digital Products. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('pk_test_TYooMQauvdEDq542VMjeXSWg'); // Replace with your public key
+        const buyButton = document.getElementById('buyButton');
+
+        buyButton.addEventListener('click', async () => {
+            const { error } = await stripe.redirectToCheckout({
+                lineItems: [{ price: 'price_12345', quantity: 1 }], // Replace with your actual price ID
+                mode: 'payment',
+                successUrl: window.location.origin + '/success.html',
+                cancelUrl: window.location.origin + '/cancel.html',
+            });
+
+            if (error) {
+                console.error('Stripe checkout error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
